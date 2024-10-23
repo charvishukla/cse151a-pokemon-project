@@ -1,2 +1,3 @@
-# Milestone 2
+# CSE 151A Pokemon Project 
 
+## Data Pre-processing 
