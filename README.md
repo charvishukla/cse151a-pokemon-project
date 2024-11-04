@@ -2,14 +2,28 @@
 Building Machine learning models around Pokemon card prices and attributes
 
 ## Dataset Retrieval
-Our data was scraped using the [Price charting API](https://www.pricecharting.com/api-documentation). Initially, we had $60296$ observations with $27$ features. The second dataset we used was the [Pokemon Cards dataset from Kaggle](https://www.kaggle.com/datasets/adampq/pokemon-tcg-all-cards-1999-2023/data). We combined both of these datasets, and the resulting dataset has $30300$ observations with $56 features$. We dropped columns with a really high number of null values, and also irrelevant colunns that we thought were un-informative to our study. The code for the same can be found in our `cse151a_pokemon_project_exploration.ipynb` file
+Our data was scraped using the [Price charting API](https://www.pricecharting.com/api-documentation). Initially, we had $60296$ observations with $27$ features. The second dataset we used was the [Pokemon Cards dataset from Kaggle](https://www.kaggle.com/datasets/adampq/pokemon-tcg-all-cards-1999-2023/data). We combined both of these datasets, and the resulting dataset has $30300$ observations with $56$ features. We dropped columns with a really high number of null values, and also irrelevant colunns that we thought were un-informative to our study. The remaining features are listed below. The code for the same can be found in our `cse151a_pokemon_project_exploration.ipynb` file
 
 ## Dataset download and Environmment set-up instructions:
 **Dataset Download** -
 1. The Pokemon Cards Data can be downloaded form Kaggle by following this link: https://www.kaggle.com/datasets/adampq/pokemon-tcg-all-cards-1999-2023/data
 2. The Price Charting Data was extracted using a paid API, which is stored in a private google drive found here: [ADD LINK]
 
+**Environment Set-up**:
+We have used the following Python Libraries:
+- `pandas`
+- `seaborn`
+- `numpy`
+- `scipy`
+- `matplotlib`
 
+This repository can be cloned using the following command:
+
+```
+https://github.com/charvishukla/cse151a-pokemon-project.git
+```
+
+The code can either be run locally using Jupyter Notebook (`cd cse151a-pokemon-project; jupyter-notebook`) or can be uploaded and run on Google Collab. 
 
 We have the following features in `price-guide.csv` file:
 
@@ -43,8 +57,10 @@ We have the following features in `price-guide.csv` file:
 28. `hp` -  card's hit points
 29. `weaknesses` - card's weaknesses (i.e. what type is our current pokemon the weakest against)
 30. `rarity` - The rarity of the Pokemon Card (not pokemon)
-31. `legalities` - 
-32. `resistances`-  
+31. `legalities` - The legalities of the pokemon card
+32. `resistances`-  The resistances listed on the Pokemon Card 
+
+
 
 
 
