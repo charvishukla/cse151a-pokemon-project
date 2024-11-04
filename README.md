@@ -66,3 +66,4 @@ We have the following features in `price-guide.csv` file:
 
 Once we get to preprocessing, we will rename the features to be more in line with what we are testing while keeping them true to their original values.
 
+![](https://cdn.discordapp.com/attachments/1294432320933330955/1302830550943404043/image.png?ex=67298b00&is=67283980&hm=1737bf6870659bad61f701524881e52487fbeb48c68e66f72c259e6e616da473&)

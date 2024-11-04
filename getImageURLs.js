@@ -1,4 +1,5 @@
 const fs = require('fs');
+OUTPUT_FILE = "images.json";
 async function writeFileAsync(filename, data) {
     try {
         await fs.writeFile(filename, data, 'utf8');
@@ -18,11 +19,11 @@ async function executeAllAsyncSettled(asyncFunctions) {
 
     const fulfilled = results.filter(result => result.status === 'fulfilled').map(result => result.value);
     const rejected = results.filter(result => result.status === 'rejected').map(result => result.reason);
-    fs.writeFileSync('images.json', JSON.stringify(imageMaps));
+    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(imageMaps));
     console.log('Fulfilled results:', fulfilled.length);
     console.log('Rejected results:', rejected.length);
 }
-const API_KEY = "";
+const API_KEY = "";//Not required
 if(!API_KEY || API_KEY !== ""){
     const myHeaders = new Headers();
     myHeaders.append("X-Api-Key", API_KEY);
