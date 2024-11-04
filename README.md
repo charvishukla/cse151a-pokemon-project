@@ -1,20 +1,18 @@
 # cse151a-pokemon-project
 Building Machine learning models around Pokemon card prices and attributes
-## Milstone 2 Todos
-* Setup Notebook for data exploration (similar to prof's dataset notebooks)
-* Figure out what features and observations to drop
-* Data cleaning (strings)
-* Think of data encoding schemes
-* Distribute roles/jobs
-* FINALIZE FEATURES FOR DATASET
-* Updates on merging
-
 
 ## Dataset Retrieval
-Our data was scraped using the [Price charting API](https://www.pricecharting.com/api-documentation). Initially, we had $60296$ observations with $27$ features. 
+Our data was scraped using the [Price charting API](https://www.pricecharting.com/api-documentation). Initially, we had $60296$ observations with $27$ features. The second dataset we used was the [Pokemon Cards dataset from Kaggle](https://www.kaggle.com/datasets/adampq/pokemon-tcg-all-cards-1999-2023/data). We combined both of these datasets, and the resulting dataset has $30300$ observations with $56 features$. We dropped columns with a really high number of null values, and also irrelevant colunns that we thought were un-informative to our study. The code for the same can be found in our `cse151a_pokemon_project_exploration.ipynb` file
+
+## Dataset download and Environmment set-up instructions:
+**Dataset Download** -
+1. The Pokemon Cards Data can be downloaded form Kaggle by following this link: https://www.kaggle.com/datasets/adampq/pokemon-tcg-all-cards-1999-2023/data
+2. The Price Charting Data was extracted using a paid API, which is stored in a private google drive found here: [ADD LINK]
+
 
 
 We have the following features in `price-guide.csv` file:
+
 1. `id` - The unique identifier for the specific Pokémon Card labeled by Price Charting       
 2. `console-name` - The name of the collection (set) that the Pokémon Card was released in
 3. `product-name` - The name of the Pokémon Card
@@ -30,5 +28,25 @@ We have the following features in `price-guide.csv` file:
 13. `sales-volume` - Yearly units sold
 14. `tcg-id` - ID of the Pokémon Card in its specific set
 15. `release-date` - Date of when the Pokémon Card was released
+16. `tcg_id` - Pokémon TCG API English Card ID
+17. `set` - card sequence num in the current set
+18. `series` - card's series name
+19. `publisher` - card's publisher (For example, WOTC = Wizards of the Coast, TPCI = The Pokémon Company International)
+20. `generation` - card's generation (numerical equivalent of series)
+21. `release_date` - card release date
+22. `artist` - The card's artist 
+23. `name` - The name of the Pokémon Card (according to the TCG dataset)
+24. `set_num` - card sequence num in the current set
+25. `types` - card type(s) (Example: colorless, psychic, lightning, metal etc)
+26. `supertype` - card supertype (Pokémon, Trainer, Energy)
+27. `subtypes` - ard's subtype(s) 
+28. `hp` -  card's hit points
+29. `weaknesses` - card's weaknesses (i.e. what type is our current pokemon the weakest against)
+30. `rarity` - The rarity of the Pokemon Card (not pokemon)
+31. `legalities` - 
+32. `resistances`-  
+
+
 
 Once we get to preprocessing, we will rename the features to be more in line with what we are testing while keeping them true to their original values.
+
