@@ -66,4 +66,8 @@ We have the following features in `price-guide.csv` file:
 
 Once we get to preprocessing, we will rename the features to be more in line with what we are testing while keeping them true to their original values.
 
+The summary statistics indicate that the standard deviations across multiple columns are extremely high relative to their means, suggesting a wide spread of values within each variable. For instance, loose-price has a standard deviation of 869.98, while its mean is only 36.69. Similarly, graded-price, box-only-price, and manual-only-price all display substantial variability with standard deviations much larger than their respective means.
+
+This high variability indicates the presence of outliers. This can also be seen from our pairplots in the previous sections where there are some scatter-points really away from the clusters. Therefore, for the pre-processing stage, we will apply z-score normalization and drop extreme values (i.e. when the z-score is greater than 3 for some value). This will allow us to reveal the underlying shape of the distribution.
+
 ![](https://cdn.discordapp.com/attachments/1294432320933330955/1302830550943404043/image.png?ex=67298b00&is=67283980&hm=1737bf6870659bad61f701524881e52487fbeb48c68e66f72c259e6e616da473&)
