@@ -7,7 +7,9 @@ Our data was scraped using the [Price charting API](https://www.pricecharting.co
 ## Dataset download and Environmment set-up instructions:
 **Dataset Download** -
 1. The Pokemon Cards Data can be downloaded form Kaggle by following this link: https://www.kaggle.com/datasets/adampq/pokemon-tcg-all-cards-1999-2023/data
-2. The Price Charting Data was extracted using a paid API, which is stored in a private google drive found here: [ADD LINK]
+2. The Price Charting Data was extracted using a paid API, which is stored in a private google drive found here: https://ucsdcloud-my.sharepoint.com/:f:/g/personal/cshukla_ucsd_edu/EiksPRBMWu1AsIEoCJaYNPcBaycdRswLyPCJO9FwLywatQ?e=5TOFP8
+
+For this project, please download and add these `.csv` files in the root directory of the project. 
 
 **Environment Set-up**:
 We have used the following Python Libraries:
