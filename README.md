@@ -90,4 +90,13 @@ We have the following features in `price-guide.csv` file:
 
 - **Categorical Variable Encoding**
   - For categorical data such as `artist`, `type`, `super type`, `publisher`,  `console-name`, etc. we will be using encoding techniques such as one-hot encoding and oridnal encoding to be able to use these variables in our ML models. 
-  
+
+
+
+---
+## TODO
+
+-> Encode categorical variables 
+-> drop extreme values from the $$$ data 
+-> play around with different combinations of inputs and outputs for the linear regression model
+-> Ask TAs if we can now include the image data or not
