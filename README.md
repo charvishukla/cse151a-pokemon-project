@@ -97,6 +97,9 @@ We have the following features in `price-guide.csv` file:
 ## TODO
 
 -> Encode categorical variables 
+
 -> drop extreme values from the $$$ data 
+
 -> play around with different combinations of inputs and outputs for the linear regression model
+
 -> Ask TAs if we can now include the image data or not
