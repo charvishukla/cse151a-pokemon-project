@@ -2,3 +2,5 @@
 price-guide.csv
 .DS_Store
 /images
+*/images/*
+*/cropped/*
