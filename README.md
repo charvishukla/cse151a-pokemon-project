@@ -66,26 +66,65 @@ We have the following features in `price-guide.csv` file:
 32. `resistances`-  The resistances listed on the Pokemon Card 
 
 ---
-## Milestone 3:
+# Milestone 3:
 
 (Note: all preprocessing code and model code can be found in our github repository: https://github.com/charvishukla/cse151a-pokemon-project/blob/Milestone3/Milestone3-Preprocessing-Model1.ipynb)
 
 ## Preprocessing:
 
-We began Milestone 3 by finishing the major preprocessing we had yet to do from milestone 2. In the previous milestone, we removed the features that were not useful for training our models, so for cleaning the rest of the data we had to drop all of the rows with null values. We decided to drop the null values instead of imputing these data points because we believed this would negatively affect the model's accuracy. This left us with 30300 data points to split for our training, validation, and testing sets. For our classification model, we then needed to encode certain features so they fit correctly. From the features we had left in our data, we decided to encode types (threshold of 1000), rarity (threshold of 1000), and generation (threshold of 1500). We then decided on using random forest for our classification model while focusing on rarity and the average graded price of the card.
+We began Milestone 3 by finishing the major preprocessing we had yet to do from milestone 2.
+We did the following:
+- Dropped null rows from the merged dataset from MS2
+- Dropping categories with very few observations for certian categories:
+  - We used a threshold to fix the minimum number of observations each category needs to have. We used the following theresholds:
+       - `types`: 1000     
+       - `rarity`: 1000  
+       - `generation`:1500
+- One-Hot Encoding for categorical variables `type` and `generation`
 
 
-## Model Implementation:
+---
+## Model 1: Random Forest
+In this model, we are using a **Random Forest Classifier** to predict the **rarity** of Pokemon cards based on a combination of numerical as well as categorical features.
 
-After finalizing the preprocessing of our data we moved onto implementing our Random Forest Classifier. We first created a subset of our data containing the features we wanted to evaluate our model on. These features were types, generation, bgs-10-price, graded-price, hp, and sales-volume. Our target was the rarity of the cards we are evaluating. We created a training and test split in a ratio of 80:20 with a random state of 42 and we also decided to shuffle the data. We used imblearn to take SMOTE and resample our X and Y trains to fit our model. We then built our random forest classifier with sklearn to fit our resampled X and Y and create a classification report as well as a confusion matrix for the results of our training and testing set.
+#### Features :
+1. **Categorical Features**:
+   - `types`: Represents the type/category of the item.
+   - `generation`: Refers to the generation or version of the item.
+
+2. **Numerical Features**:
+   - `bgs-10-price`: The graded price of the item in mint condition.
+   - `graded-price`: The general graded price of the item.
+   - `hp`: Represents the item's hit points (a measure of power or health).
+   - `sales-volume`: Indicates the volume of sales for the item.
+
+3.  Target Variable :
+- **rarity**: The classification label indicating how rare the item is.
+ 
+### Steps 
+#### Address class imbalance using `SMOTE (Synthetic Minority Oversampling Technique)`
+
+#### Cross Validation using `K-fold` from `sklearn`:
+- Split the data into 5 folds for training and validation.
+- We train and evaluate model on different subsets of the data to prevent overfitting
+- Following are the training accuracies for each fold:
+``` [0.77840344 0.77475985 0.76507621 0.75878065 0.77269715]```
+
+The trend in the training accuracy across folds can be seen below:
+
+
+
+
+## Training vs Testing Error:
+
+Our training accuracy was at 99% while our testing accuracy was at 67%. This leaves us with a gap of about 32% between the two sets. This can indicate that our model is overfitting based off of our training data, and we may need to adjust our training and testing splits as well as consider adding a validation set to ensure that we have an accurate accuracy for both of our data sets. The training set had near perfect precision and recall which definitely does indicate overfitting and we will aim to address this in future models.
+
 
 ## Testing Set Evaluation:
 
 The accuracy of our testing set was 66.97% indicating that our model was accurately able to predict a card's rarity based on the price of the card at about 67% accuracy. For the common cards, we had a balanced performance with high precision and recall at 83% and 85% respectively. For our rare and uncommon cards, the model struggled a bit more with precision and recall for rare cards being 54% and 52% respectively and for uncommon cards being 57% and 58%. Since our recall and precision are lower for these card rarities, this can indicate that there might be a class imbalance or that the features we chose are not relevant enough. We believe that it might not be because of class imbalance though because we chose to resample the data before fitting it into our model.
 
-## Training vs Testing Error:
 
-Our training accuracy was at 99% while our testing accuracy was at 67%. This leaves us with a gap of about 32% between the two sets. This can indicate that our model is overfitting based off of our training data, and we may need to adjust our training and testing splits as well as consider adding a validation set to ensure that we have an accurate accuracy for both of our data sets. The training set had near perfect precision and recall which definitely does indicate overfitting and we will aim to address this in future models.
 
 ## Interpreting The Fitting Graph:
 
