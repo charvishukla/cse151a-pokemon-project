@@ -193,7 +193,7 @@ The accuracy of our testing set was 66.97% indicating that our model was accurat
 
 ## Next Model Considerations:
 
-For the next models we want to consider, we want to create more classification models for our data in the form of logistic regression, and we'd also like to use a linear regression model to predict the price based on our features as well. Before we start on these next models though, we would like to adjust some of the data for our random forest model as we believe we can prevent overfitting by adjusting the training and testing splits while also adding a validation set. We would like to revisit this random forest model and improve upon it as we continue to create new models for our data.
+For the next models we want to consider, we want to create more classification models for our data in the form of logistic regression, and we'd also like to use a linear regression model to predict the price based on our features as well. For further classification models, we will look to use decision trees due to their ability to handle null values. This gives us more flexibility with our datasets and should even help us with overfitting. Before we start on these next models though, we would like to adjust some of the data for our random forest model as we believe we can prevent overfitting by adjusting the training and testing splits while also adding a validation set. We would like to revisit this random forest model and improve upon it as we continue to create new models for our data.
 
 ## Conclusion
 
