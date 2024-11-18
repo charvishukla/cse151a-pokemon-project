@@ -66,40 +66,35 @@ We have the following features in `price-guide.csv` file:
 32. `resistances`-  The resistances listed on the Pokemon Card 
 
 ---
-## Milestone 3 TODO List:
+## Milestone 3:
 
-- **Renaming Columns**
-  - For the pre-processing step, we aim to re0name the features to be more intuitive and in-line with what we are testing while keeping them true to their original values.
+(Note: all preprocessing code and model code can be found in our github repository: https://github.com/charvishukla/cse151a-pokemon-project/blob/Milestone3/Milestone3-Preprocessing-Model1.ipynb)
 
-- **Z-score Normalization and Outlier detection**
-  - We have the following standard deviation in the prices present in our dataset at the moment. This high standard deviation is a result of extreme outliers which are visible in the pair-plots plotted in our EDA Jupyter notebook. 
-  ```
-  loose-price             79.443088
-  graded-price           323.930300
-  box-only-price         486.569103
-  manual-only-price     3465.324301
-  bgs-10-price          5542.460171
-  sales-volume           118.630244
-  condition-17-price    1133.810455
-  condition-18-price    2079.091298
-  hp                      52.895938
-  dtype: float64
-  ```
-  - The summary statistics indicate that the standard deviations across multiple columns are extremely high relative to their means, suggesting a wide spread of values within each variable. For instance, `loose-price` has a standard deviation of 869.98, while its mean is only 36.69. Similarly, `graded-price`, `box-only-price`, and `manual-only-price` all display substantial variability with standard deviations much larger than their respective means.
-  - This high variability indicates the presence of outliers. This can also be seen from our pairplots in the previous sections where there are some scatter-points really away from the clusters. Therefore, for the pre-processing stage, we will apply z-score normalization and drop extreme values (i.e. when the z-score is greater than 3 for some value). This will allow us to reveal the underlying shape of the distribution. 
+## Preprocessing:
 
-- **Categorical Variable Encoding**
-  - For categorical data such as `artist`, `type`, `super type`, `publisher`,  `console-name`, etc. we will be using encoding techniques such as one-hot encoding and oridnal encoding to be able to use these variables in our ML models. 
+We began Milestone 3 by finishing the major preprocessing we had yet to do from milestone 2. In the previous milestone, we removed the features that were not useful for training our models, so for cleaning the rest of the data we had to drop all of the rows with null values. We decided to drop the null values instead of imputing these data points because we believed this would negatively affect the model's accuracy. This left us with 30300 data points to split for our training, validation, and testing sets. For our classification model, we then needed to encode certain features so they fit correctly. From the features we had left in our data, we decided to encode types (threshold of 1000), rarity (threshold of 1000), and generation (threshold of 1500). We then decided on using random forest for our classification model while focusing on rarity and the average graded price of the card.
 
 
+## Model Implementation:
 
----
-## TODO
+After finalizing the preprocessing of our data we moved onto implementing our Random Forest Classifier. We first created a subset of our data containing the features we wanted to evaluate our model on. These features were types, generation, bgs-10-price, graded-price, hp, and sales-volume. Our target was the rarity of the cards we are evaluating. We created a training and test split in a ratio of 80:20 with a random state of 42 and we also decided to shuffle the data. We used imblearn to take SMOTE and resample our X and Y trains to fit our model. We then built our random forest classifier with sklearn to fit our resampled X and Y and create a classification report as well as a confusion matrix for the results of our training and testing set.
 
--> Encode categorical variables 
+## Testing Set Evaluation:
 
--> drop extreme values from the $$$ data 
+The accuracy of our testing set was 66.97% indicating that our model was accurately able to predict a card's rarity based on the price of the card at about 67% accuracy. For the common cards, we had a balanced performance with high precision and recall at 83% and 85% respectively. For our rare and uncommon cards, the model struggled a bit more with precision and recall for rare cards being 54% and 52% respectively and for uncommon cards being 57% and 58%. Since our recall and precision are lower for these card rarities, this can indicate that there might be a class imbalance or that the features we chose are not relevant enough. We believe that it might not be because of class imbalance though because we chose to resample the data before fitting it into our model.
 
--> play around with different combinations of inputs and outputs for the linear regression model
+## Training vs Testing Error:
 
--> Ask TAs if we can now include the image data or not
+Our training accuracy was at 99% while our testing accuracy was at 67%. This leaves us with a gap of about 32% between the two sets. This can indicate that our model is overfitting based off of our training data, and we may need to adjust our training and testing splits as well as consider adding a validation set to ensure that we have an accurate accuracy for both of our data sets. The training set had near perfect precision and recall which definitely does indicate overfitting and we will aim to address this in future models.
+
+## Interpreting The Fitting Graph:
+
+After plotting our model predictions for our training and testing splits, we can see that there is a large gap between the testing curve and training curve. The training curve does not move while our testing curve has an upward trend as our training set size increases. Due to this large gap, this definitely means that we have a problem with overfitting our data.
+
+## Next Model Considerations:
+
+For the next models we want to consider, we want to create more classification models for our data in the form of logistic regression, and we'd also like to use a linear regression model to predict the price based on our features as well. Before we start on these next models though, we would like to adjust some of the data for our random forest model as we believe we can prevent overfitting by adjusting the training and testing splits while also adding a validation set. We would like to revisit this random forest model and improve upon it as we continue to create new models for our data.
+
+## Conclusion
+
+For our first model, we have concluded that we are overfitting our model based on the results we have gathered. With an accuracy of 67% on our testing predictions, we are happy with the result as it is our first model. However, we cannot take this as necessarily the correct accuracy because of our overfitting problem and we will explore this in the future. We will improve this model by introducing a validation set and adjusting the splits between the sets as well. We would also like to take a look at the features to ensure we are including relevant features that will help us have a higher accuracy with our predictions. We may also take a look at class imbalance and improve our issue with it further by using class weights.
