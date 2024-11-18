@@ -100,6 +100,11 @@ In this model, we are using a **Random Forest Classifier** to predict the **rari
 
 3.  Target Variable :
 - **rarity**: The classification label indicating how rare the item is.
+
+We decided to use price as one of our features after analyzing its relationship with rarity and type. Here is the graph 
+![](imgs/compare.png)
+
+
  
 ### Steps 
 #### Address class imbalance using `SMOTE (Synthetic Minority Oversampling Technique)`
@@ -111,6 +116,7 @@ In this model, we are using a **Random Forest Classifier** to predict the **rari
 ``` [0.77840344 0.77475985 0.76507621 0.75878065 0.77269715]```
 
 The trend in the training accuracy across folds can be seen below:
+![](imgs/coss-val.png)
 
 
 
@@ -119,16 +125,71 @@ The trend in the training accuracy across folds can be seen below:
 
 Our training accuracy was at 99% while our testing accuracy was at 67%. This leaves us with a gap of about 32% between the two sets. This can indicate that our model is overfitting based off of our training data, and we may need to adjust our training and testing splits as well as consider adding a validation set to ensure that we have an accurate accuracy for both of our data sets. The training set had near perfect precision and recall which definitely does indicate overfitting and we will aim to address this in future models.
 
-
-## Testing Set Evaluation:
-
-The accuracy of our testing set was 66.97% indicating that our model was accurately able to predict a card's rarity based on the price of the card at about 67% accuracy. For the common cards, we had a balanced performance with high precision and recall at 83% and 85% respectively. For our rare and uncommon cards, the model struggled a bit more with precision and recall for rare cards being 54% and 52% respectively and for uncommon cards being 57% and 58%. Since our recall and precision are lower for these card rarities, this can indicate that there might be a class imbalance or that the features we chose are not relevant enough. We believe that it might not be because of class imbalance though because we chose to resample the data before fitting it into our model.
-
+Here is a diagram of our curve:
+The trend in the training accuracy across folds can be seen below:
+![dscc](imgs/trainacc.png)
 
 
 ## Interpreting The Fitting Graph:
 
 After plotting our model predictions for our training and testing splits, we can see that there is a large gap between the testing curve and training curve. The training curve does not move while our testing curve has an upward trend as our training set size increases. Due to this large gap, this definitely means that we have a problem with overfitting our data.
+
+## Testing Set Evaluation:
+The following are our results from evaluating on the testing set:
+
+#### Classification Report
+1. **Accuracy (0.67)**:
+   - The model correctly predicts the rarity of Pokémon cards **67% of the time**.
+2. **Macro Average**:
+   - **Precision, Recall, F1-Score (0.64)**:
+3. **Weighted Average**:
+   - **Precision, Recall, F1-Score (0.67)**:
+
+```
+              precision    recall  f1-score   support
+
+      Common       0.83      0.85      0.84       892
+        Rare       0.54      0.52      0.53       609
+   Rare Holo       0.63      0.64      0.64       470
+    Uncommon       0.58      0.57      0.58       581
+
+    accuracy                           0.67      2552
+   macro avg       0.64      0.64      0.64      2552
+weighted avg       0.67      0.67      0.67      2552
+
+
+```
+
+The accuracy of our testing set was 66.97% indicating that our model was accurately able to predict a card's rarity based on the price of the card at about 67% accuracy. For the common cards, we had a balanced performance with high precision and recall at 83% and 85% respectively. For our rare and uncommon cards, the model struggled a bit more with precision and recall for rare cards being 54% and 52% respectively and for uncommon cards being 57% and 58%. Since our recall and precision are lower for these card rarities, this can indicate that there might be a class imbalance or that the features we chose are not relevant enough. We believe that it might not be because of class imbalance though because we chose to resample the data before fitting it into our model.
+
+
+#### Confusion matrix:
+
+1. **Common**:
+   - Most are correctly predicted (756), but some are misclassified as `Uncommon `(91) or other classes.
+   - The model performs best on `Common` cards because they dominate the dataset and are easier to distinguish.
+
+2. **Rare**:
+   - 316 are correctly predicted, but many are confused with `Rare Holo` (119) and `Uncommon` (125).
+   - This suggests the model struggles with finer distinctions between "Rare" and similar classes.
+
+3. **Rare Holo**:
+   - 300 are correctly predicted, but a significant number are misclassified as "Rare" (125).
+   - This confusion is likely due to overlapping features between "Rare Holo" and "Rare."
+
+4. **Uncommon**:
+   - 334 are correctly identified, but there is confusion with `Common` (91) and "Rare" (116).
+   - This indicates the model has difficulty separating `Uncommon` from other classes.
+
+```
+[[756  30  15  91]
+ [ 49 316 119 125]
+ [ 18 125 300  27]
+ [ 91 116  40 334]]
+```
+
+
+
 
 ## Next Model Considerations:
 
