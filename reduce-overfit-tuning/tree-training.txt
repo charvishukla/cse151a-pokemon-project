@@ -1,0 +1,148 @@
+=========== trees = 100 ===========
+              precision    recall  f1-score   support
+
+      Common       0.82      0.84      0.83       892
+        Rare       0.54      0.53      0.54       609
+   Rare Holo       0.65      0.63      0.64       470
+    Uncommon       0.58      0.58      0.58       581
+
+    accuracy                           0.67      2552
+   macro avg       0.65      0.65      0.65      2552
+weighted avg       0.67      0.67      0.67      2552
+
+Accuracy: 0.6688871473354232
+=========== trees = 120 ===========
+              precision    recall  f1-score   support
+
+      Common       0.83      0.85      0.84       892
+        Rare       0.54      0.53      0.54       609
+   Rare Holo       0.65      0.63      0.64       470
+    Uncommon       0.58      0.59      0.58       581
+
+    accuracy                           0.67      2552
+   macro avg       0.65      0.65      0.65      2552
+weighted avg       0.67      0.67      0.67      2552
+
+Accuracy: 0.6716300940438872
+=========== trees = 140 ===========
+              precision    recall  f1-score   support
+
+      Common       0.83      0.85      0.84       892
+        Rare       0.55      0.53      0.54       609
+   Rare Holo       0.65      0.63      0.64       470
+    Uncommon       0.58      0.59      0.58       581
+
+    accuracy                           0.67      2552
+   macro avg       0.65      0.65      0.65      2552
+weighted avg       0.67      0.67      0.67      2552
+
+Accuracy: 0.6747648902821317
+=========== trees = 160 ===========
+              precision    recall  f1-score   support
+
+      Common       0.83      0.85      0.84       892
+        Rare       0.55      0.53      0.54       609
+   Rare Holo       0.65      0.63      0.64       470
+    Uncommon       0.58      0.58      0.58       581
+
+    accuracy                           0.67      2552
+   macro avg       0.65      0.65      0.65      2552
+weighted avg       0.67      0.67      0.67      2552
+
+Accuracy: 0.67358934169279
+=========== trees = 180 ===========
+              precision    recall  f1-score   support
+
+      Common       0.83      0.85      0.84       892
+        Rare       0.54      0.53      0.53       609
+   Rare Holo       0.65      0.63      0.64       470
+    Uncommon       0.58      0.59      0.58       581
+
+    accuracy                           0.67      2552
+   macro avg       0.65      0.65      0.65      2552
+weighted avg       0.67      0.67      0.67      2552
+
+Accuracy: 0.6724137931034483
+=========== trees = 200 ===========
+              precision    recall  f1-score   support
+
+      Common       0.83      0.85      0.84       892
+        Rare       0.55      0.53      0.54       609
+   Rare Holo       0.65      0.63      0.64       470
+    Uncommon       0.58      0.59      0.59       581
+
+    accuracy                           0.68      2552
+   macro avg       0.65      0.65      0.65      2552
+weighted avg       0.67      0.68      0.67      2552
+
+Accuracy: 0.6751567398119123
+=========== trees = 220 ===========
+              precision    recall  f1-score   support
+
+      Common       0.83      0.85      0.84       892
+        Rare       0.55      0.53      0.54       609
+   Rare Holo       0.65      0.64      0.64       470
+    Uncommon       0.59      0.59      0.59       581
+
+    accuracy                           0.68      2552
+   macro avg       0.65      0.65      0.65      2552
+weighted avg       0.68      0.68      0.68      2552
+
+Accuracy: 0.6775078369905956
+=========== trees = 240 ===========
+              precision    recall  f1-score   support
+
+      Common       0.83      0.85      0.84       892
+        Rare       0.55      0.53      0.54       609
+   Rare Holo       0.65      0.64      0.65       470
+    Uncommon       0.58      0.59      0.59       581
+
+    accuracy                           0.68      2552
+   macro avg       0.65      0.65      0.65      2552
+weighted avg       0.68      0.68      0.68      2552
+
+Accuracy: 0.6775078369905956
+=========== trees = 260 ===========
+              precision    recall  f1-score   support
+
+      Common       0.83      0.85      0.84       892
+        Rare       0.54      0.53      0.54       609
+   Rare Holo       0.65      0.64      0.65       470
+    Uncommon       0.58      0.59      0.58       581
+
+    accuracy                           0.68      2552
+   macro avg       0.65      0.65      0.65      2552
+weighted avg       0.67      0.68      0.67      2552
+
+Accuracy: 0.6755485893416928
+=========== trees = 280 ===========
+              precision    recall  f1-score   support
+
+      Common       0.83      0.85      0.84       892
+        Rare       0.54      0.52      0.53       609
+   Rare Holo       0.64      0.64      0.64       470
+    Uncommon       0.59      0.59      0.59       581
+
+    accuracy                           0.67      2552
+   macro avg       0.65      0.65      0.65      2552
+weighted avg       0.67      0.67      0.67      2552
+
+Accuracy: 0.6739811912225705
+[0.76084796 0.7416363  0.74088801 0.75049702 0.75115971]
+
+
+  RandomForestClassifier?i
+RandomForestClassifier(max_depth=14, random_state=123)
+
+              precision    recall  f1-score   support
+
+      Common       0.85      0.85      0.85       892
+        Rare       0.55      0.49      0.52       609
+   Rare Holo       0.64      0.68      0.66       470
+    Uncommon       0.59      0.64      0.61       581
+
+    accuracy                           0.68      2552
+   macro avg       0.66      0.66      0.66      2552
+weighted avg       0.68      0.68      0.68      2552
+
+Best number of trees is (220, 0.6775078369905956)
