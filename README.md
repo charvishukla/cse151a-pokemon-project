@@ -201,8 +201,23 @@ For our first model, we have concluded that we are overfitting our model based o
 
 # Milestone 4
 
+## Addressing Overfit in Milestone 3
+Our training accuracy over time showed 100% training accuracy, while having testing accuracy of around 67%. This large disparity was pointed out to be fixed before comparison to our second model.
+
+To address this, we adjusted hyperparameters and changed our output classes to increase accuracy as well as make our training accuracy approach our testing/validation accuracy.
+
+After changes:
+
+Ending training accuracy after cross validation = 0.895
+
+Testing accuracy = 0.841
+
+![](/imgs/ms3-learning-curve.png)
+
 ## Preprocessing:
 After receiving feedback on overfitting issues on our previous model and looking to improve our model accuracy, a few output classes were merged to better align with real world classifications that are often made about pokemon cards.
+
+Following up on the preprocessing done in milestone 3, we pregrouped the cards:
 
 Common and Uncommon cards were grouped together as uncommon cards are have very little statistical and qualitative difference from Common crads
 
@@ -222,3 +237,8 @@ Same as model 2, we are predicting the **rarity** of Pokemon cards based on the 
 
 Target Variable :
 - **rarity**: The classification label indicating how rare the item is.
+
+## Training vs Testing Accuracy
+We see the trajectory of the neural net's training accuracy over epochs to be over 80%, settling at around 84% which is near the testing accuracy of also around 84%. This gives an indications that overfitting is not a large problem at play for our model.
+
+![](/imgs/ms4-trainingacc.png)
