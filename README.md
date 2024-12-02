@@ -242,3 +242,17 @@ Target Variable :
 We see the trajectory of the neural net's training accuracy over epochs to be over 80%, settling at around 84% which is near the testing accuracy of also around 84%. This gives an indications that overfitting is not a large problem at play for our model.
 
 ![](/imgs/ms4-trainingacc.png)
+
+### Where does your model fit in the fitting graph?
+
+
+### What are the next models you are thinking of and why?
+
+
+## Conclusion
+
+### What is the conclusion of your 2nd model?
+
+### What can be done to possibly improve it?
+
+## Predications of correct FP and FN
