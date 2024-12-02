@@ -121,6 +121,33 @@ The trend in the training accuracy across folds can be seen below:
 
 
 
+## Model Architecture
+
+### Hyperparameters and Loss Function
+We used binary cross-entropy Loss because it is often used for binary classification tasks. It measures the error between predicted probabilities (from a sigmoid output) and actual binary labels (0 or 1).
+Furthermore, we used a learning rate of 0.001 (i.e. our "alpha" value) and our optimization method was Stochastic Gradient Descent. 
+
+In order to make our model converge (can be seen by the flattening of our accuracy and loss curves shown in the figures below), we trained our model for 1000 epochs. 
+
+### Preventing Overfitting
+We added dropout layers, visible in the code as:
+  ```
+self.dropout1 = nn.Dropout(0.3)
+```
+Dropout prevents overfitting by randomly "dropping out" (setting to zero) a fraction of neurons during training, forcing the network to rely on multiple pathways rather than over-specializing on specific neurons. This code applies dropout on 30% of the neurons
+
+## Getting Classifications 
+We used a sigmoid function in our Neural Network to achieve this:
+```
+self.sigmoid = nn.Sigmoid()
+```
+This sigmoid activation function also present in our neural network, helps map our output between 0 and 1 for binary classification
+
+
+**Note** Our neural network is a combination of fully connected layers, dropout layers and activation functions.
+
+
+
 ## Training vs Testing Error:
 
 Our training accuracy was at 99% while our testing accuracy was at 67%. This leaves us with a gap of about 32% between the two sets. This can indicate that our model is overfitting based off of our training data, and we may need to adjust our training and testing splits as well as consider adding a validation set to ensure that we have an accurate accuracy for both of our data sets. The training set had near perfect precision and recall which definitely does indicate overfitting and we will aim to address this in future models.
