@@ -212,6 +212,17 @@ Ending training accuracy after cross validation = 0.895
 
 Testing accuracy = 0.841
 
+```
+                 precision    recall  f1-score   support
+
+Common/Uncommon       0.87      0.86      0.87      1510
+ Rare/Rare Holo       0.80      0.80      0.80      1018
+
+       accuracy                           0.84      2528
+      macro avg       0.83      0.83      0.83      2528
+   weighted avg       0.84      0.84      0.84      2528
+```
+
 ![](/imgs/ms3-learning-curve.png)
 
 ## Preprocessing:
@@ -244,7 +255,9 @@ We see the trajectory of the neural net's training accuracy over epochs to be ov
 ![](/imgs/ms4-trainingacc.png)
 
 ### Where does your model fit in the fitting graph?
+![](/imgs/ms4-training-loss.png)
 
+At the beginning of training, the loss is initially very high, but begins to sharply decrease for around ~50 epochs. Past this, for 100 epochs, a transition to a plateuing shape can be observed which can be interpreted as a sort of "fitting". Furthermore, the longer the training goes, we do not see an increase in loss besides noise, rather, a slow decline. This indicates that the model is fitting the data rather than overfitting which may be indiciated by an increasing loss after fitting.
 
 ### What are the next models you are thinking of and why?
 A few thoughts on models to try next were possibly a convolutional neural network to try to work with the image data that we have. Because we now have a clearer divide in output classes, it may be easier to try an image based input as a feature. Although not explored yet, an SVM is also another idea for classification, although we feel as though it may be difficult and will definitely be a non-linear kernel due to highly variant features.
