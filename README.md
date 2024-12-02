@@ -247,12 +247,29 @@ We see the trajectory of the neural net's training accuracy over epochs to be ov
 
 
 ### What are the next models you are thinking of and why?
+A few thoughts on models to try next were possibly a convolutional neural network to try to work with the image data that we have. Because we now have a clearer divide in output classes, it may be easier to try an image based input as a feature. Although not explored yet, an SVM is also another idea for classification, although we feel as though it may be difficult and will definitely be a non-linear kernel due to highly variant features.
 
+## Predictions of correct FP and FN
+From the sklearn's `confusion_matrix()` function with inputs `y_true, y_pred` gives the output:
+
+```
+[[1997  270]
+ [ 343 1180]]
+```
+
+Where the shape corresponds to:
+
+```
+[[TP FP]
+[FN TN]]
+```
+Therefore:
+* Correct = TP + TN = 1997 + 1180 = 3177
+* FP = 270
+* FN = 343
 
 ## Conclusion
 
 ### What is the conclusion of your 2nd model?
 
 ### What can be done to possibly improve it?
-
-## Predications of correct FP and FN
