@@ -198,3 +198,27 @@ For the next models we want to consider, we want to create more classification m
 ## Conclusion
 
 For our first model, we have concluded that we are overfitting our model based on the results we have gathered. With an accuracy of 67% on our testing predictions, we are happy with the result as it is our first model. However, we cannot take this as necessarily the correct accuracy because of our overfitting problem and we will explore this in the future. We will improve this model by introducing a validation set and adjusting the splits between the sets as well. We would also like to take a look at the features to ensure we are including relevant features that will help us have a higher accuracy with our predictions. We may also take a look at class imbalance and improve our issue with it further by using class weights.
+
+# Milestone 4
+
+## Preprocessing:
+After receiving feedback on overfitting issues on our previous model and looking to improve our model accuracy, a few output classes were merged to better align with real world classifications that are often made about pokemon cards.
+
+Common and Uncommon cards were grouped together as uncommon cards are have very little statistical and qualitative difference from Common crads
+
+Rare and Holo Rare cards were grouped together due to many holo rares being an identical copy of a rare, with no statistical differences, just visual differences(added shine to the card).
+
+## Model 2: Perceptron Neural Net
+Same as model 2, we are predicting the **rarity** of Pokemon cards based on the same features listed below.
+**Categorical Features**:
+   - `types`: Represents the type/category of the item.
+   - `generation`: Refers to the generation or version of the item.
+
+**Numerical Features**:
+   - `bgs-10-price`: The graded price of the item in mint condition.
+   - `graded-price`: The general graded price of the item.
+   - `hp`: Represents the item's hit points (a measure of power or health).
+   - `sales-volume`: Indicates the volume of sales for the item.
+
+Target Variable :
+- **rarity**: The classification label indicating how rare the item is.
