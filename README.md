@@ -14,12 +14,7 @@ The broader impacts of this research extend beyond the Pokemon card market, prov
 
 
 # Methods
-![](imgs/compare.png)
 
-# Results
-![](imgs/ms4-training-loss.png)
-
-# Discussion
 
 ## Data Gathering
 Our data was collected by combining two datasets. One was scraped by using a price charting API. The other dataset was pulled from a Kaggle Pokemon dataset. ​​One problem we encountered was a disparity in ID systems between the two datasets. After some analysis of the ID names and their set names, it seemed like most of the datasets had a conversion by using their set name combined with an en dash(“-”) and their card number within the set. A few sets had to be ignored due to inconsistent naming. Although before we had around 50,000 observations, after combining datasets we had a total of 30300 observations with 56 features.
@@ -82,6 +77,16 @@ For our second model we decided on a Neural Network to predict the rarity of Pok
 
 Due to the fact that we had some issues with overfitting with the last model, for this model we applied a dropout on 30% of the working neurons to prevent the network from over-specializing on specific neurons, this process is found in this line: `self.dropout1 = nn.Dropout(0.3)`. Finally, we trained our model for 1000 epochs to make it converge as seen with the Training and Testing Accuracy Graphs
 [https://github.com/charvishukla/cse151a-pokemon-project/blob/Milestone4/Milestone4-Second-Model.ipynb](https://github.com/charvishukla/cse151a-pokemon-project/blob/Milestone4/Milestone4-Second-Model.ipynb)
+
+
+![](imgs/compare.png)
+
+# Results
+![](imgs/ms4-training-loss.png)
+
+# Discussion
+
+
 
 
 # Conclusion
