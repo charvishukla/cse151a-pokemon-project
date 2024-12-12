@@ -203,5 +203,5 @@ Kenneth Song: Team member/writer: Introduction writeup portion, organized writeu
 
 George Li:
 
-Anthony Georgis: 
+Anthony Georgis: Team member/writer: Results writeup portion, helped with classification reports and metrics used and double checked work before submissions.
 
