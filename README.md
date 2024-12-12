@@ -30,7 +30,7 @@ After collecting our data, we becan exploring trends in it to inform our hypothe
 
 
 ## Preprocessing
-For our categorical data, we used `value_counts()` to quickly comb through columns of our chosen features to pick out which categories would be difficult to map due to the extremely low population. For example, all of the dual-typed cards were dropped due to very low counts compared to the rest of the types. After looking through `rarity`, `types`, and `generation` and their value counts, the feature counts containing less than the following were dropped.
+For our categorical data, we used `value_counts()` to quickly comb through columns of our chosen features to pick out which categories would be difficult to map due to the extremely low population. For example, all of the dual-typed cards were dropped due to very low counts compared to the rest of the types. After looking through `rarity`, `types`, and `generation` and their value counts, the feature counts containing less than the following were dropped. Then the input feature categorical variables were one hot encoded.
 
 ```
 thresholds = {
@@ -42,6 +42,21 @@ for col, threshold in thresholds.items():
     counts = subset_df[col].value_counts()
     valid_categories = counts[counts >= threshold].index
     subset_df = subset_df[subset_df[col].isin(valid_categories)]
+```
+One Hot encoding
+```
+encoded_df = pd.get_dummies(subset_df, columns=['types', 'generation'], drop_first=True)
+```
+
+Note that for model 2, the numerical features were standardized:
+```
+encoder = OneHotEncoder()
+types_encoded = encoder.fit_transform(subset_df[['types']]).toarray()
+generation_encoded = encoder.fit_transform(subset_df[['generation']]).toarray()
+numerical_features = ['bgs-10-price', 'graded-price', 'hp', 'sales-volume']
+scaler = StandardScaler()
+numerical_data = scaler.fit_transform(subset_df[numerical_features])
+final_features = np.hstack([types_encoded, generation_encoded, numerical_data])
 ```
 
 In addition, we created the following correlation heatmap to analyze the relationships between key features in our dataset, such as `card prices`, `sales volume`, and `health points (HP)`. The plot helps us identify strongly correlated variables, such as the high interdependence between different pricing metrics (e.g., `loose-price`, `graded-price`, `box-only-price`). Conversely, it reveals weak correlations, such as between `sales volume`, suggesting these may have _less_ predictive power for card valuation or rarity. This analysis informs our feature selection process by highlighting which variables are most meaningful for our models and which may need further investigation or exclusion. Ultimately, the heatmap provides critical insights for optimizing the performance and efficiency of our machine learning models.
@@ -63,10 +78,7 @@ Furthermore, we explored how features like pricing and conditions related across
 
 ![](/imgs/Unknown-3.png)
 
-
-### Merging output classes
-
-
+Merging output classes and dropping outliers
 
 ```
 top1 = subset_df['graded-price'].quantile(0.99)
@@ -80,16 +92,21 @@ subset_df['rarity'] = subset_df['rarity'].replace('Rare Holo', "Rare/Rare Holo")
 
 ```
 
-
-### Dropping Null values
+Dropping Null values for the last time
 ```
 subset_df = subset_df.dropna()
 ```
 
-encoded_df = pd.get_dummies(subset_df, columns=['types', 'generation'], drop_first=True)
+#### Address class imbalance using `SMOTE (Synthetic Minority Oversampling Technique)`
 
-### Resampling
-Lastly, to handle for sampling imbalance, we used SMOTE with the default setting of minority class resampling.
+#### Cross Validation using `K-fold` from `sklearn`:
+- Split the data into 5 folds for training and validation.
+- We train and evaluate model on different subsets of the data to prevent overfitting
+- Following are the training accuracies for each fold:
+ [0.77840344 0.77475985 0.76507621 0.75878065 0.77269715]
+The trend in the training accuracy across folds can be seen below:
+![](imgs/coss-val.png)
+
 
 ## Model 1
 The first model used random forest as an expedition into tree based algorithms as this was chosen before deciding to merge classes. After observing patterns in our data for some time, the non-linear, complex patterns that were difficult to pin down seemed like a good candidate for random forest classification. There were a few problems that came from this model initially, like accuracy, however biggest factor was the high overfitting indicated by 100% training set accuracy compared to a validation and test accuracy in the 60s. Due to time limitations, the model was not fully fixed until a later milestone, which addressed much of the overfitting problems, tuned hyperparameters and merged classes for increased accuracy. At the same time, we found that increasing n_estimators up from a default of 100, to 220 allowed us to increase accuracy while keeping our training accuracy close to testing and cross validation accuracy.
