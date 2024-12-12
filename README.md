@@ -232,11 +232,11 @@ Charvi Shukla: Team member: Worked on implementing the neural network, and its c
 
 Pedro Arias: Team Member/writer: Collaborated on methods section for final writeup, communicated with group, aided in milestone writeups and ensured all questions were answered. 
 
-David Kim: Programmed data gathering and merging scripts. Tuned hyperparemeters for model 1 and provided supporting analysis on results for model 1 and 2. Wrote the discussion section and collaborated on writing the methods section.
+David Kim: Programmed data gathering and merging scripts with background knowledge in pokemon cards. Tuned hyperparemeters for model 1 and provided supporting analysis on results for model 1 and 2. Wrote the discussion section and collaborated on writing the methods section.
 
 Kenneth Song: Team member/writer: Introduction writeup portion, organized writeup figures to use, set up meetings, double checked work before submissions, communicated often with group
 
-George Li:
+George Li: Suggested and researched the pokemon dataset, brought background information about topic, worked on conclusion section for final writeup, collaborated on various milestone writeups, communicated often in group
 
 Anthony Georgis: Team member/writer: Results writeup portion, helped with classification reports and metrics used and double checked work before submissions.
 
