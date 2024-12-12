@@ -21,6 +21,62 @@ The broader impacts of this research extend beyond the Pokemon card market, prov
 
 # Discussion
 
+## Data Gathering
+Our data was collected by combining two datasets. One was scraped by using a price charting API. The other dataset was pulled from a Kaggle Pokemon dataset. ​​One problem we encountered was a disparity in ID systems between the two datasets. After some analysis of the ID names and their set names, it seemed like most of the datasets had a conversion by using their set name combined with an en dash(“-”) and their card number within the set. A few sets had to be ignored due to inconsistent naming. Although before we had around 50,000 observations, after combining datasets we had a total of 30300 observations with 56 features.
+This combination process was documented and is repeatable with the scripts in the repository.
+
+(https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/merge-scripts
+)[https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/merge-scripts
+]
+
+## Preprocessing
+For our categorical data, we used `value_counts()` to quickly comb through columns of our chosen features to pick out which categories would be difficult to map due to the extremely low population. For example, all of the dual-typed cards were dropped due to very low counts compared to the rest of the types. After looking through `rarity`, `types`, and `generation` and their value counts, the feature counts containing less than the following were dropped.
+
+```
+thresholds = {
+    'types': 1000  ,
+    'rarity': 1000  ,
+    'generation': 1500
+}
+for col, threshold in thresholds.items():
+    counts = subset_df[col].value_counts()
+    valid_categories = counts[counts >= threshold].index
+    subset_df = subset_df[subset_df[col].isin(valid_categories)]
+```
+
+Further preprocessing was required during tuning and reevaluation of our model 1 as well. After reanalyzing our pair plots, especially concerning price and the overfitting from model 1, we attempted to drop some detail in our data as well as our output classes to make achieving a higher accuracy more plausible. We noticed that extremely high costs of a few cards were seen in our pairplots, causing the x-axes to stretch further than the others, which led us to believe high-cost cards were throwing our models off. Therefore we decided to drop the top 1% quartile of prices. As for dropping detail, after coloring pair plots by rarity, it became evident that many of the previous 4 different rarity classes were overlapping in qualities, so much so that it would just be more useful to merge a few of the classes. This overlap is likely due to the idea that generally cards seem to be in a more binary category for either rare, being very high price (cards worth more than around a dollar) or lower price (only worth cents). Since rarity is categorical but still ordered, we were able to group common, uncommon, rare, and rare holos into common combined with uncommon and rare combined with rare holos. This is not unexpected due to the idea that rare holo and holo are essentially the same cards statistically, other than an added shiny visual effect.
+
+### Merging output classes and removing outliers
+```
+top1 = subset_df['graded-price'].quantile(0.99)
+subset_df = subset_df[subset_df['graded-price'] < top1]
+
+subset_df['rarity'] = subset_df['rarity'].replace('Common', "Common/Uncommon")
+subset_df['rarity'] = subset_df['rarity'].replace('Uncommon', "Common/Uncommon")
+
+subset_df['rarity'] = subset_df['rarity'].replace('Rare', "Rare/Rare Holo")
+subset_df['rarity'] = subset_df['rarity'].replace('Rare Holo', "Rare/Rare Holo")
+
+```
+
+### Dropping Null values
+```
+subset_df = subset_df.dropna()
+```
+
+encoded_df = pd.get_dummies(subset_df, columns=['types', 'generation'], drop_first=True)
+
+## Model 1
+The first model used random forest as an expedition into tree based algorithms as this was chosen before deciding to merge classes. After observing patterns in our data for some time, the non-linear, complex patterns that were difficult to pin down seemed like a good candidate for random forest classification. There were a few problems that came from this model initially, like accuracy, however biggest factor was the high overfitting indicated by 100% training set accuracy compared to a validation and test accuracy in the 60s. Due to time limitations, the model was not fully fixed until a later milestone, which addressed much of the overfitting problems, tuned hyperparameters and merged classes for increased accuracy. At the same time, we found that increasing n_estimators up from a default of 100, to 220 allowed us to increase accuracy while keeping our training accuracy close to testing and cross validation accuracy.
+
+Tuning manually, we found most of the default parameters for the RandomForestClassifier to be optimized. Of the hyperparameters changed, the most impactful for reducing overfitting was decreasing `max_depth` to 10. The default `max_depth` is set to 30, which essentially captures less details per tree in our data allowing for higher generalization in our model. With a few iterations, we found that reducing it past 10 began to seriously become detrimental to the accuracy of our model, so 10 was set as our optimal hyperparameter. `min_samples_split` was also slightly changed to a default of 2 to 4 for a very minimal boost in accuracy. `ccp_alpha`, `max features` and `min_samples_leaf` made little difference or negative impact to change so we left them at their default values and finished our tuning.
+Tuning results can be seen below as text file outputs using loops as this was done before learning of search tuning. 
+
+[https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/reduce-overfit-tuning](https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/reduce-overfit-tuning
+)
+### Resampling
+Lastly, to handle for sampling imbalance, we used SMOTE with the default setting of minority class resampling.
+
 # Conclusion
 In the beginning, we started with a dataset containing about 30300 observations and 56. This dataset resulted from merging two separate datasets, of which one was scraped using an API. Throughout this project, we were only able to utilize a small subset of this dataset’s features as many features proved irrelevant after processing. We built a Random Forest and a simple Neural Network to predict the rarity of a Pokemon Card, based on a combination of categorical and numerical variables. The results from our Random Forest and Neural Network was as follows:
 
