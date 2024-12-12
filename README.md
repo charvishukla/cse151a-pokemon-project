@@ -88,6 +88,9 @@ subset_df = subset_df.dropna()
 
 encoded_df = pd.get_dummies(subset_df, columns=['types', 'generation'], drop_first=True)
 
+### Resampling
+Lastly, to handle for sampling imbalance, we used SMOTE with the default setting of minority class resampling.
+
 ## Model 1
 The first model used random forest as an expedition into tree based algorithms as this was chosen before deciding to merge classes. After observing patterns in our data for some time, the non-linear, complex patterns that were difficult to pin down seemed like a good candidate for random forest classification. There were a few problems that came from this model initially, like accuracy, however biggest factor was the high overfitting indicated by 100% training set accuracy compared to a validation and test accuracy in the 60s. Due to time limitations, the model was not fully fixed until a later milestone, which addressed much of the overfitting problems, tuned hyperparameters and merged classes for increased accuracy. At the same time, we found that increasing n_estimators up from a default of 100, to 220 allowed us to increase accuracy while keeping our training accuracy close to testing and cross validation accuracy.
 
@@ -97,15 +100,20 @@ Tuning manually, we found most of the default parameters for the RandomForestCla
 Tuning results can be seen below as text file outputs using loops as this was done before learning of search tuning. 
 [https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/reduce-overfit-tuning](https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/reduce-overfit-tuning
 )
-### Resampling
-Lastly, to handle for sampling imbalance, we used SMOTE with the default setting of minority class resampling.
+
+### Examples of tuning results
+![](/reduce-overfit-tuning/tree-training.png)
+
+![](/reduce-overfit-tuning/depth-training.png)
+
+![](/reduce-overfit-tuning/tree-and-depth.png)
+
 
 ## Model 2
 For our second model we decided on a Neural Network to predict the rarity of Pokemon cards based on both categorical and numerical features. We used One Hot encoding to encode our categorical data as well as Standardized our numerical data to prevent any feature from dominating during learning. After processing the data we ended with 21 features and 12631 rows. For our hyperparameters we used binary cross-entropy loss due to our target feature, rarity, being able to be represented in binary format. Some of the hyperparameters that we tuned were the learning rate, ultimately decided on 0.001 and our optimization method, ending with Stochastic Gradient Descent.
 
 Due to the fact that we had some issues with overfitting with the last model, for this model we applied a dropout on 30% of the working neurons to prevent the network from over-specializing on specific neurons, this process is found in this line: `self.dropout1 = nn.Dropout(0.3)`. Finally, we trained our model for 1000 epochs to make it converge as seen with the Training and Testing Accuracy Graphs
 [https://github.com/charvishukla/cse151a-pokemon-project/blob/Milestone4/Milestone4-Second-Model.ipynb](https://github.com/charvishukla/cse151a-pokemon-project/blob/Milestone4/Milestone4-Second-Model.ipynb)
-
 
 
 
@@ -177,8 +185,17 @@ Here are the results from our confusion matrix:
 
 # Discussion
 
+To initially begin finding a dataset, there were a few goals in mind. Something large enough to be optimal for a neural network, a dataset involving images, and data containing many features. We arrived at a few options but fell short of an ideal dataset based on these goals. To remedy this, we combined two datasets and scraped another image dataset that eventually went unused due to time constraints on milestone 5.
 
+In milestone 2, most of our time was spent on data scraping and data processing; The dataset was riddled with pockets of zeroed prices and missing features which led our initial dataset of 60,000 to be reduced to 17,000. This cutdown was unfortunate but required as it would be difficult to interpret prices. Additionally, during this milestone, we began to label our features which required some background knowledge of Pokemon cards to understand. Here we tried to identify patterns visually in our pair plots and tested a few simple regression models. Despite the feature transformations we attempted, there was still a large spread in the pair plots which made sense as to why simpler models could not pick up on the patterns. The pair plots revealed weak 2-dimensional trends that were highly expected like the fact that there was a general increasing trend for many features, but a fair amount of outliers caused the pairplot graphs to stretch further than they should. This gave us ideas for transforming our features and to weed out a percentile of outliers.
 
+Therefore, after much pruning, feature correlation reasoning, and pair plot spread interpretation we decided on our target outcome feature to be card rarity, while the features we used to predict were card type, generation, best-graded condition price, general graded price, health points, and sales volume of the card. For type, it looked like certain types were associated with higher prices, and as a proxy, rarity because prices are consistently related to rarity. From this information it might seem like rarity and price should be directly correlated factors, however analyzing their pairplot and background knowledge about the Pokemon card market reveals that there are many other factors at play. Pokemon cards’ prices do have a high correlation with their rarity but are often brought to extremes through their age, visual elements like art satisfaction, and playability in games. Thus, we attempted to capture these elements through card generation for age, and health points for playability. Additionally, higher prices imply scarcity which is indicated by our sales volume feature.
+
+For milestone 3, we approached the dataset with a few simple models to test for initial compatibility, however, many of these models led to lower-than-expected accuracies. This somewhat random spread of rarities gave the inspiration to apply the random forest classifier. This model did have much higher accuracies than the others tested, however it was still quite low, being sub 70%. This was unsatisfactory to our group, and the short-term conclusions we drew from this model were that since we had 4 output classes the high overlap in feature similarities threw off our accuracy, and not hyperparameter tuning was causing extreme overfitting. This was later remedied in a later milestone, and with decent results, bringing our accuracy up almost 20% and essentially reducing most of the overfitting which was evident in our training accuracy compared to previous.
+
+Milestone 4 was a more involved milestone in that the neural net was implemented using PyTorch (instead of Tensorflow) and required more self-tuning and a from-scratch implementation. While training the model itself took the longest and the accuracies were very similar, we feel that this model had the best “learning” compared to the previous model. This interpretation comes from the fact that model 2 has a much closer training and testing accuracy as well as an identifiable loss curve with a significant decrease at first and a consistent downward slope, indicating that the training converged steadily. The best loss function was clearly binary cross-entropy, a common loss function for binary classification. A few static parameters we decided on to keep training time lower were stochastic gradient descent with a learning rate of 0.001. The hyperparameters adjusted for our neural network were dropout rate, epoch count, and activation function. The dropout rate was manually tuned to reduce overfitting, while the epoch count was chosen based on the loss curve and cut off when the learning began to stagnate or increase overall loss. Finally, the sigmoid function was found to be optimal in this application due to the binary classification that we had decided as our output variables.
+
+We had hoped for our model to have been far more accurate given the amount of data we had and with more time, it would have been much more interesting to try and implement our classifier with the image data we scraped (~17k unique images). This is especially due to a hypothesis we had about image geometries and color and their relation to rarity and price. A few regrets were failures to recognize complex patterns in data, and low correlation in pairplots early, which led to confusion and frustration during our initial model exploration. Furthermore, using gridsearch, and other tuning search methods would have made our tuning much less taxing on our time spent on tuning the models.
 
 # Conclusion
 In the beginning, we started with a dataset containing about 30300 observations and 56. This dataset resulted from merging two separate datasets, of which one was scraped using an API. Throughout this project, we were only able to utilize a small subset of this dataset’s features as many features proved irrelevant after processing. We built a Random Forest and a simple Neural Network to predict the rarity of a Pokemon Card, based on a combination of categorical and numerical variables. The results from our Random Forest and Neural Network was as follows:
