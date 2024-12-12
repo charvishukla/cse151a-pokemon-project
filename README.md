@@ -229,7 +229,7 @@ We are definitely not the first group of people to ever build a functional machi
 
 Charvi Shukla: Team member: Worked on implementing the neural network, and its corresponding graphs. Collaborated with team mates on the exploratory data analysis section.
 
-Pedro Arias: 
+Pedro Arias: Team Member/writer: Collaborated on methods section for final writeup, communicated with group, aided in milestone writeups and ensured all questions were answered. 
 
 David Kim: Programmed data gathering and merging scripts. Tuned hyperparemeters for model 1 and provided supporting analysis on results for model 1 and 2. Wrote the discussion section and collaborated on writing the methods section.
 
