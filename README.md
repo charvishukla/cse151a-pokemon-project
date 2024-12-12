@@ -1,6 +1,6 @@
 # CSE151A Pokemon Card Project
 Building a machine learning model around Pokemon card prices and rarity
-![](imgs/compare.png)
+
 # Introduction
 
 The Pokemon card market has experienced a dramatic surge in popularity, especially following the COVID-19 pandemic. What started as a children’s trading card game has transformed into a high-stakes collectors’ market, where rare and legendary cards can sell for hundreds of thousands of dollars. The rise of professional grading companies, which certify card quality and condition, has further fueled the demand, creating a competitive marketplace with unprecedented prices. 
@@ -23,6 +23,11 @@ This combination process was documented and is repeatable with the scripts in th
 (https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/merge-scripts
 )[https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/merge-scripts
 ]
+
+After collecting our data, we becan exploring trends in it to inform our hypotheses better for the models to follow. Here is one example:
+
+![](imgs/compare.png)
+
 
 ## Preprocessing
 For our categorical data, we used `value_counts()` to quickly comb through columns of our chosen features to pick out which categories would be difficult to map due to the extremely low population. For example, all of the dual-typed cards were dropped due to very low counts compared to the rest of the types. After looking through `rarity`, `types`, and `generation` and their value counts, the feature counts containing less than the following were dropped.
@@ -140,6 +145,10 @@ Common/Uncommon       0.87      0.86      0.87      1510
 
 
 ```
+The following is our learning curve (after preventing and adjusting for overfitting):
+
+![](imgs/ms3-learning-curve.png)
+
 
 
 
