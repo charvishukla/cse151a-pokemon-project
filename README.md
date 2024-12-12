@@ -4,8 +4,12 @@ Building a machine learning model around Pokemon card prices and rarity
 # Introduction
 
 # Methods
+![](imgs/compare.png)
 
 # Results
+![](imgs/ms4-trainingacc.png)
+
+![](imgs/ms4-training-loss.png)
 
 # Discussion
 
