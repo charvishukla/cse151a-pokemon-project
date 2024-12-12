@@ -41,12 +41,28 @@ for col, threshold in thresholds.items():
 
 In addition, we created the following correlation heatmap to analyze the relationships between key features in our dataset, such as `card prices`, `sales volume`, and `health points (HP)`. The plot helps us identify strongly correlated variables, such as the high interdependence between different pricing metrics (e.g., `loose-price`, `graded-price`, `box-only-price`). Conversely, it reveals weak correlations, such as between `sales volume`, suggesting these may have _less_ predictive power for card valuation or rarity. This analysis informs our feature selection process by highlighting which variables are most meaningful for our models and which may need further investigation or exclusion. Ultimately, the heatmap provides critical insights for optimizing the performance and efficiency of our machine learning models.
 
-![](/imgs/imgs/Unknown-2.png)
+![](/imgs/Unknown-2.png)
 
-Further preprocessing was required during tuning and reevaluation of our model 1 as well. After reanalyzing our pair plots, especially concerning price and the overfitting from model 1, we attempted to drop some detail in our data as well as our output classes to make achieving a higher accuracy more plausible. We noticed that extremely high costs of a few cards were seen in our pairplots, causing the x-axes to stretch further than the others, which led us to believe high-cost cards were throwing our models off. Therefore we decided to drop the top 1% quartile of prices. As for dropping detail, after coloring pair plots by rarity, it became evident that many of the previous 4 different rarity classes were overlapping in qualities, so much so that it would just be more useful to merge a few of the classes. This overlap is likely due to the idea that generally cards seem to be in a more binary category for either rare, being very high price (cards worth more than around a dollar) or lower price (only worth cents). Since rarity is categorical but still ordered, we were able to group common, uncommon, rare, and rare holos into common combined with uncommon and rare combined with rare holos. This is not unexpected due to the idea that rare holo and holo are essentially the same cards statistically, other than an added shiny visual effect.
+### Removing Outliers 
+
+Further preprocessing was required during tuning and reevaluation of our model 1 as well. After analyzing our pair plots, we attempted to drop some detail in our data as well as our output classes to make achieving a higher accuracy more plausible. We noticed that extremely high costs of a few cards were seen in our pairplots, causing the x-axes to stretch further than the others, which led us to believe high-cost cards were throwing our models off. Therefore we decided to drop the top 1% quartile of prices. 
+
+The following is what our pair plot looked like **without** removing the outliers:
+
+![](/imgs/Unknown.png)
 
 
-### Merging output classes and removing outliers
+As for dropping detail, after coloring pair plots by rarity, it became evident that many of the previous 4 different rarity classes were overlapping in qualities, so much so that it would just be more useful to merge a few of the classes. This overlap is likely due to the idea that generally cards seem to be in a more binary category for either rare, being very high price (cards worth more than around a dollar) or lower price (only worth cents). Since rarity is categorical but still ordered, we were able to group common, uncommon, rare, and rare holos into common combined with uncommon and rare combined with rare holos. This is not unexpected due to the idea that rare holo and holo are essentially the same cards statistically, other than an added shiny visual effect.
+
+Furthermore, we explored how features like pricing and conditions related across card collections and informed the model-building process, and choosing our input/output variables. The figure below visualized the pairwise relationships between numerical features in the dataset, categorized by the top three most common Pokémon card sets: Pokémon Promo, Silver Tempest, and Unbroken Bonds. Each point in the scatter plots represented a card, and the colors differentiated cards from these three sets. The diagonal tells us te variability within a set. 
+
+![](/imgs/Unknown-3.png)
+
+
+### Merging output classes
+
+
+
 ```
 top1 = subset_df['graded-price'].quantile(0.99)
 subset_df = subset_df[subset_df['graded-price'] < top1]
@@ -58,6 +74,7 @@ subset_df['rarity'] = subset_df['rarity'].replace('Rare', "Rare/Rare Holo")
 subset_df['rarity'] = subset_df['rarity'].replace('Rare Holo', "Rare/Rare Holo")
 
 ```
+
 
 ### Dropping Null values
 ```
