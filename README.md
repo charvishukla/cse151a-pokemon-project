@@ -36,8 +36,14 @@ We are definitely not the first group of people to ever build a functional machi
 # Statement of Collaboration
 
 Charvi Shukla:  
+
 Pedro Arias: 
-David Kim:  
+
+David Kim: 
+
 Kenneth Song: Team member/writer: Introduction writeup portion, organized writeup figures to use, set up meetings, double checked work before submissions, communicated often with group
+
 George Li:
+
 Anthony Georgis: 
+
