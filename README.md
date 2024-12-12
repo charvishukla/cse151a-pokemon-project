@@ -107,9 +107,64 @@ Due to the fact that we had some issues with overfitting with the last model, fo
 # Results
 
 
+Initially, the model exhibited overfitting, with 100% training accuracy but only 67% testing accuracy. This large gap indicated that the model was memorizing the training data instead of generalizing well to unseen data.
 
-![](imgs/ms3-learning-curve.png)
+To address this:
+The number of trees `n_estimators` was increased to 220.
+The maximum depth of the trees `max_depth` was limited to 10.
+The minimum samples required to split a node `min_samples_split` was set to 4.
+
+These changes encouraged the model to better generalize to unseen data by limiting its complexity and avoiding overfitting patterns in the training model. As a result:
+Training Accuracy was reduced to 0.895, closer to the testing accuracy.
+Testing Accuracy improved to 0.841, indicating better generalization.
+
+
+## Model 1: Random Forest
+
+The following classification report summarizes the performance of Model 1.
+1. Accuracy (0.84): The model correctly predicts the rarity of Pokémon cards 84% of the time. The performance is slightly better for the `Common/Uncommon` class (precision, recall and F1 score of 0.87) compared to the `Rare/Rare Holo` class (precision, recall and F1 score of 0.80) 
+2. Macro Average: Precision, Recall, F1-Score (0.83). This indicates that the model treats both classes fairly equally. 
+3. Weighted Average: Precision, Recall, F1-Score (0.84). This shows that there is consistency with the overall dataset distribution.
+
+Here is the terminal output for the classification report:
+
+```                 
+ precision    recall  f1-score   support
+
+Common/Uncommon       0.87      0.86      0.87      1510
+ Rare/Rare Holo       0.80      0.80      0.80      1018
+
+       accuracy                           0.84      2528
+      macro avg       0.83      0.83      0.83      2528
+   weighted avg       0.84      0.84      0.84      2528
+
+
+```
+
+
+
+## Model 2: Neural Network.
+We see the trajectory of the neural net's training accuracy over epochs to be over 80%, settling at around 84% which is near the testing accuracy of also around 84%. This gives an indication that overfitting is not a large problem at play for our model.
+
+At the beginning of training, the loss is initially very high, but begins to sharply decrease for around ~50 epochs. Past this, for 100 epochs, a transition to a plateauing shape can be observed which can be interpreted as a sort of "fitting". Furthermore, the longer the training goes, we do not see an increase in loss besides noise, rather, a slow decline. This indicates that the model is fitting the data rather than overfitting which may be indicated by an increasing loss after fitting. 
+
+The following are our diagrams for **training accuracy** and **training loss:**
+![](imgs/ms4-training-loss.png)
 ![](imgs/ms4-trainingacc.png)
+
+
+Compared to the previous model, the main differential is the difficulty in fitting. To reduce the overfitting problem from before required tuning the number of trees in our forest in `n_estimators` as well as artificially limiting the depth of our trees with `max_depth` to better capture generality rather than capture specific patterns in our training data. Other hyperparameters were tested but were found to decrease overall accuracy.
+
+
+The neural net does a similar adjustment process automatically for weights during training, which made the fitting more natural for the model and required comparatively little manual adjustment on parameters.
+Here are the results from our confusion matrix:
+
+**Correct Predictions (Accuracy)**: 3177
+**False Positives (FP)**: 270
+**False Negatives (FN)**: 343
+
+
+
 
 # Discussion
 
