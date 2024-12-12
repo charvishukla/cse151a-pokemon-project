@@ -7,14 +7,17 @@ Building a machine learning model around Pokemon card prices and rarity
 ![](imgs/compare.png)
 
 # Results
-![](imgs/ms4-trainingacc.png)
-
 ![](imgs/ms4-training-loss.png)
 
 # Discussion
 
 # Conclusion
-In the beginning, we started with a dataset containing about 30300 observations and 56. This dataset resulted from merging two separate datasets, of which one was scraped using an API. Throughout this project, we were only able to utilize a small subset of this dataset’s features as many features proved irrelevant after processing. We built a Random Forest and a simple Neural Network to predict the rarity of a Pokemon Card, based on a combination of categorical and numerical variables. The models of our choice — although powerful and simple — were only able to handle a small subset of our features, given the amount of data. Thus, in the future, to tackle such complexity, we aim to work with Ensemble Models. These models would employ a combination of Machine Learning algorithms instead of just one, leading to greater predictive power and generalizability.
+In the beginning, we started with a dataset containing about 30300 observations and 56. This dataset resulted from merging two separate datasets, of which one was scraped using an API. Throughout this project, we were only able to utilize a small subset of this dataset’s features as many features proved irrelevant after processing. We built a Random Forest and a simple Neural Network to predict the rarity of a Pokemon Card, based on a combination of categorical and numerical variables. The results from our Random Forest and Neural Network was as follows:
+
+![](imgs/ms3-learning-curve.png)
+![](imgs/ms4-trainingacc.png)
+
+The models of our choice — although powerful and simple — were only able to handle a small subset of our features, given the amount of data. Thus, in the future, to tackle such complexity, we aim to work with Ensemble Models. These models would employ a combination of Machine Learning algorithms instead of just one, leading to greater predictive power and generalizability.
 
 There are many different possible routes we wanted our project to extend to. We realized in the time that we were allotted for this project that we would only be able to predict Pokemon Card rarity based on our selected features. In the future, we would like to create models that can accomplish other tasks within the Pokemon Card market space. This includes models that could predict the price of a card or the possible grade a card may receive based on a provided image of said card. We also worked a lot with models focused on classification for this project. Though classification was productive in our case, there is a case that can be made that choosing a different model for finance related data could help improve our accuracies further. However, we were able to build a high accuracy model with classification for the task we aimed for.
 
