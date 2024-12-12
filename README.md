@@ -24,7 +24,7 @@ This combination process was documented and is repeatable with the scripts in th
 )[https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/merge-scripts
 ]
 
-After collecting our data, we becan exploring trends in it to inform our hypotheses better for the models to follow. Here is one example:
+After collecting our data, we becan exploring trends in it to inform our hypotheses better for the models to follow. For instance, the figure below shows the average graded price of Pokémon cards by type (left) and rarity (right). Notice how "Colorless" cards have the highest average graded price among types, while "Rare Holo" cards are significantly more valuable compared to other rarity categories!
 
 ![](imgs/compare.png)
 
