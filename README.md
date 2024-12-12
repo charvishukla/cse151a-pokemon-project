@@ -228,15 +228,15 @@ We are definitely not the first group of people to ever build a functional machi
 
 # Statement of Collaboration
 
-Charvi Shukla: Team member: Worked on implementing the neural network, and its corresponding graphs. Collaborated with team mates on the exploratory data analysis section.
+Charvi Shukla: Team member/programmer/analyst: Worked on implementing the neural network, and its corresponding graphs. Collaborated with team mates on the exploratory data analysis section.
 
 Pedro Arias: Team Member/writer: Collaborated on methods section for final writeup, communicated with group, aided in milestone writeups and ensured all questions were answered. 
 
-David Kim: Programmed data gathering and merging scripts with background knowledge in pokemon cards. Tuned hyperparemeters for model 1 and provided supporting analysis on results for model 1 and 2. Wrote the discussion section and collaborated on writing the methods section.
+David Kim: Team member/programmer/writer: data gathering and merging scripts with background knowledge in pokemon cards. Tuned hyperparemeters for model 1 and provided supporting analysis on results for model 1 and 2. Wrote the discussion section and collaborated on writing the methods section.
 
-Kenneth Song: Team member/writer: Introduction writeup portion, organized writeup figures to use, set up meetings, double checked work before submissions, communicated often with group
+Kenneth Song: Team member/writer/coordinator: Introduction writeup portion, organized writeup figures to use, set up meetings, double checked work before submissions, communicated often with group, setup meetings
 
-George Li: Suggested and researched the pokemon dataset, brought background information about topic, worked on conclusion section for final writeup, collaborated on various milestone writeups, communicated often in group
+George Li: Team member/writer/researcher: Suggested and researched the pokemon dataset, brought background information about topic, worked on conclusion section for final writeup, collaborated on various milestone writeups, communicated often in group
 
 Anthony Georgis: Team member/writer: Results writeup portion, helped with classification reports and metrics used and double checked work before submissions.
 
