@@ -234,7 +234,7 @@ Pedro Arias: Team Member/writer: Collaborated on methods section for final write
 
 David Kim: Team member/programmer/writer: data gathering and merging scripts with background knowledge in pokemon cards. Tuned hyperparemeters for model 1 and provided supporting analysis on results for model 1 and 2. Wrote the discussion section and collaborated on writing the methods section.
 
-Kenneth Song: Team member/writer/coordinator: Introduction writeup portion, organized writeup figures to use, set up meetings, double checked work before submissions, communicated often with group, setup meetings
+Kenneth Song: Team member/writer/coordinator: Introduction writeup portion, organized writeup figures to use, set up meetings, double checked work before submissions, communicated often with group
 
 George Li: Team member/writer/researcher: Suggested and researched the pokemon dataset, brought background information about topic, worked on conclusion section for final writeup, collaborated on various milestone writeups, communicated often in group
 
