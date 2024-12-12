@@ -241,5 +241,5 @@ Kenneth Song: Team member/writer/coordinator: Introduction writeup portion, orga
 
 George Li: Team member/writer/researcher: Suggested and researched the pokemon dataset, brought background information about topic, worked on conclusion section for final writeup, collaborated on various milestone writeups, communicated often in group
 
-Anthony Georgis: Team member/writer: Results writeup portion, helped with classification reports and metrics used and double checked work before submissions.
+Anthony Georgis: Team member/writer/analyst: Results writeup portion, helped with classification reports and metrics used and double checked work before submissions.
 
