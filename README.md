@@ -20,9 +20,7 @@ The broader impacts of this research extend beyond the Pokemon card market, prov
 Our data was collected by combining two datasets. One was scraped by using a price charting API. The other dataset was pulled from a Kaggle Pokemon dataset. ​​One problem we encountered was a disparity in ID systems between the two datasets. After some analysis of the ID names and their set names, it seemed like most of the datasets had a conversion by using their set name combined with an en dash(“-”) and their card number within the set. A few sets had to be ignored due to inconsistent naming. Although before we had around 50,000 observations, after combining datasets we had a total of 30300 observations with 56 features.
 This combination process was documented and is repeatable with the scripts in the repository.
 
-(https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/merge-scripts
-)[https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/merge-scripts
-]
+[Merge scripts](https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/merge-scripts)
 
 After collecting our data, we becan exploring trends in it to inform our hypotheses better for the models to follow. For instance, the figure below shows the average graded price of Pokémon cards by type (left) and rarity (right). Notice how "Colorless" cards have the highest average graded price among types, while "Rare Holo" cards are significantly more valuable compared to other rarity categories!
 
@@ -111,12 +109,14 @@ The trend in the training accuracy across folds can be seen below:
 ## Model 1
 The first model used random forest as an expedition into tree based algorithms as this was chosen before deciding to merge classes. After observing patterns in our data for some time, the non-linear, complex patterns that were difficult to pin down seemed like a good candidate for random forest classification. There were a few problems that came from this model initially, like accuracy, however biggest factor was the high overfitting indicated by 100% training set accuracy compared to a validation and test accuracy in the 60s. Due to time limitations, the model was not fully fixed until a later milestone, which addressed much of the overfitting problems, tuned hyperparameters and merged classes for increased accuracy. At the same time, we found that increasing n_estimators up from a default of 100, to 220 allowed us to increase accuracy while keeping our training accuracy close to testing and cross validation accuracy.
 
-Tuning manually, we found most of the default parameters for the RandomForestClassifier to be optimized. Of the hyperparameters changed, the most impactful for reducing overfitting was decreasing `max_depth` to 10. The default `max_depth` is set to 30, which essentially captures less details per tree in our data allowing for higher generalization in our model. With a few iterations, we found that reducing it past 10 began to seriously become detrimental to the accuracy of our model, so 10 was set as our optimal hyperparameter. `min_samples_split` was also slightly changed to a default of 2 to 4 for a very minimal boost in accuracy. `ccp_alpha`, `max features` and `min_samples_leaf` made little difference or negative impact to change so we left them at their default values and finished our tuning.
+Tuning manually, we found most of the default parameters for the RandomForestClassifier to be optimized. Of the hyperparameters changed, the most impactful for reducing overfitting was decreasing `max_depth` to 10. The default `max_depth` is set to 30, and decreasing it forces our forest to capture less details per tree in our data allowing for higher generalization in our model. With a few iterations, we found that reducing it past 10 began to seriously become detrimental to the accuracy of our model, so 10 was set as our optimal hyperparameter. `min_samples_split` was also slightly changed to a default of 2 to 4 for a very minimal boost in accuracy. `ccp_alpha`, `max features` and `min_samples_leaf` made little difference or negative impact to change so we left them at their default values and finished our tuning.
 
 
 Tuning results can be seen below as text file outputs using loops as this was done before learning of search tuning. 
 [https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/reduce-overfit-tuning](https://github.com/charvishukla/cse151a-pokemon-project/tree/Milestone4/reduce-overfit-tuning
 )
+
+[Model 1 Notebook](https://github.com/charvishukla/cse151a-pokemon-project/blob/Milestone4/Milestone3-Preprocessing-Model1.ipynb)
 
 ### Examples of tuning results
 ![](/reduce-overfit-tuning/tree-training.png)
@@ -130,6 +130,7 @@ Tuning results can be seen below as text file outputs using loops as this was do
 For our second model we decided on a Neural Network to predict the rarity of Pokemon cards based on both categorical and numerical features. We used One Hot encoding to encode our categorical data as well as Standardized our numerical data to prevent any feature from dominating during learning. After processing the data we ended with 21 features and 12631 rows. For our hyperparameters we used binary cross-entropy loss due to our target feature, rarity, being able to be represented in binary format. Some of the hyperparameters that we tuned were the learning rate, ultimately decided on 0.001 and our optimization method, ending with Stochastic Gradient Descent.
 
 Due to the fact that we had some issues with overfitting with the last model, for this model we applied a dropout on 30% of the working neurons to prevent the network from over-specializing on specific neurons, this process is found in this line: `self.dropout1 = nn.Dropout(0.3)`. Finally, we trained our model for 1000 epochs to make it converge as seen with the Training and Testing Accuracy Graphs
+
 [https://github.com/charvishukla/cse151a-pokemon-project/blob/Milestone4/Milestone4-Second-Model.ipynb](https://github.com/charvishukla/cse151a-pokemon-project/blob/Milestone4/Milestone4-Second-Model.ipynb)
 
 
