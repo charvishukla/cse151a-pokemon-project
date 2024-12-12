@@ -7,11 +7,14 @@ The Pokemon card market has experienced a dramatic surge in popularity, especial
 
 This topic was chosen because of the group’s shared passion for Pokemon and the need for reliable, data-driven tools in this rapidly growing, multi-million-dollar industry. Pokemon universally appeals to generations of people, making this an exciting and relatable subject, as even enthusiasts like Professor Solares would agree (we think). While traditional methods—such as relying on anecdotal evidence, historical data, or recent transactions of a similar card and quality—can provide some guidance, they often result in inefficiencies and inaccuracies, leading to undervalued or overpriced cards. As the market continues to expand, a more sophisticated and structured approach to evaluating card rarity and market value is essential.
 
+![](https://www.pojo.com/wp-content/uploads/2017/10/beckett-charizard-10.jpg)
+
 To address this need, this study incorporates several advanced machine learning techniques to predict the rarity of Pokemon cards based on features such as grade quality, statistics (i.e. Health Points, Evolution state, Move Damage), and visual features (i.e. regular, holographic, reverse holographic). Predictive models include random forest classifiers and neural networks, designed to identify relationships between card characteristics, rarity, and pricing trends. This study also explores broader market trends from 2021 onward, using methods like linear regression and neural networks to identify key factors influencing Pokemon card prices.
 
 This topic is particularly cool because it combines a popular hobby and machine learning techniques. Pokemon card collecting has evolved into a sophisticated and lucrative global market, and by enabling accurate predictions of card rarity and value, this research enhances the collecting experience while promoting fair pricing and informed decision-making. Data-driven predictions have the potential to stabilize and bring more transparency to the Pokemon card marketplace.
 The broader impacts of this research extend beyond the Pokemon card market, providing a foundation for improving valuation in other collectible industries. By replacing reliance on anecdotal evidence and word-of-mouth pricing with machine learning models, this study ensures greater transparency and efficiency in high-value markets. As these models evolve, they may soon become integral to future pricing techniques, influencing buyers and sellers with reliable data to make informed decisions. This approach ensures market stability and promotes a sustainable, equitable framework for collectibles industries worldwide. 
 
+![](https://preview.redd.it/0kuggow0s4w81.png?width=640&crop=smart&auto=webp&s=d937cfecd6b683de4ef301e7fcdae2780724c6de)
 
 # Methods
 
