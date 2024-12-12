@@ -193,7 +193,7 @@ We are definitely not the first group of people to ever build a functional machi
 
 # Statement of Collaboration
 
-Charvi Shukla:  
+Charvi Shukla: Team member: Worked on implementing the neural network, and its corresponding graphs. Collaborated with team mates on the exploratory data analysis section.
 
 Pedro Arias: 
 
